@@ -1,0 +1,9 @@
+{
+  "name": "portfolio-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "个人作品集网站（复刻 Notion 版式）",
+  "scripts": {
+    "dev": "node serve.js"
+  }
+}
