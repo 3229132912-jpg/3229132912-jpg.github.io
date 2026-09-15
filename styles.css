@@ -304,12 +304,17 @@ ul { list-style: none; }
 
 /* ===== 响应式 ===== */
 @media (max-width: 860px) {
+  .page { padding: 0 20px; }
   .split { grid-template-columns: 1fr; gap: 20px; }
   .side-note { max-width: none; }
-  .about-body { flex-direction: column; gap: 24px; }
+  .about-body { grid-template-columns: 1fr; gap: 24px; margin-top: 24px; }
+  .avatar img { width: 132px; height: auto; }
   .work-grid { grid-template-columns: 1fr; }
+  .cover { height: 200px; }
   .cover-title { font-size: 24px; }
-  .site-title { font-size: 34px; }
+  .site-title { font-size: 34px; padding-top: 28px; }
+  .section { padding: 40px 0 48px; }
+  .tool-grid { grid-template-columns: repeat(2, 1fr); }
 }
 /* ===== 交互动效 ===== */
 
@@ -954,4 +959,15 @@ body.modal-open .topnav { display: none; }
   .cs-note, .cs-quote { text-align: left; }
   .cs-feedbacks { flex-wrap: wrap; }
   .cs-feedbacks li { margin: 8px; }
+}
+
+/* ===== 手机端弹窗适配（置于文件末尾确保优先级）===== */
+@media (max-width: 860px) {
+  .cs-sheet { width: 100vw; top: 0; bottom: 0; border-radius: 0; }
+  .cs-icon-slot { padding: 72px 20px 0; }
+  .cs-icon-ph { width: 76px; height: 76px; border-radius: 19px; }
+  .cs-text-frame { width: calc(100% - 40px); padding: 32px 22px; margin-top: 26px; }
+  .cs-frame-title { font-size: 30px; }
+  .cs-longimg { margin: 24px 20px 0; }
+  .cs-longimg-frame { min-height: 700px; }
 }
