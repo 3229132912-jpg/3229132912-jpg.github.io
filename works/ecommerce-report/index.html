@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中国电商竞品研究 · 交互式研究版</title>
+<meta name="description" content="七大平台、一个存量战场：四强并立、利润牺牲期与2027份额预言。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='3' width='14' height='11' fill='%23c9a06b' stroke='%23051c2c'/><rect x='7' y='3' width='2' height='11' fill='%232251ff'/></svg>">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<nav id="era-rail" aria-label="章节导航">
+  <div class="rail-year" id="rail-year">§0</div>
+  <div class="rail-track" id="rail-track"></div>
+</nav>
+
+<!-- ═══ 封面 · 快递包裹四态（D态开箱揭幕为默认） ═══ -->
+<header id="cover">
+  <canvas id="cover-canvas"></canvas>
+  <canvas id="cover-canvas-x" style="display:none"></canvas>
+  <canvas id="cover-canvas-w" style="display:none"></canvas>
+  <div class="cover-inner">
+    <p class="cover-kicker">中国电商竞品研究 · 数据截至 2026-09-29</p>
+    <h1 class="cover-title">七大平台，<br><span class="cover-num">一个存量战场</span></h1>
+    <p class="cover-sub">四强并立 · 利润牺牲期 · 2027份额预言</p>
+    <p class="cover-lede">中国电商已进入存量竞争与格局重排的叠加期：渗透率见顶确认“抢存量”基调，格局从“两超多强”改写为“四强并立”，全行业利润在即时零售、AI与商家生态三线投入下同向收缩。本报告以222条来源为底，逐层拆开这只“包裹”——面单、箱体、缓冲层与商品，各对应一层行业论点。</p>
+    <div class="cover-chips">
+      <button class="chip" data-goto="#sec-exec">核心发现</button>
+      <button class="chip" data-goto="#sec-share">格局重排</button>
+      <button class="chip" data-goto="#sec-fin">利润牺牲期</button>
+      <button class="chip" data-goto="#sec-instant">即时零售战役</button>
+      <button class="chip" data-goto="#sec-outlook">2027展望</button>
+    </div>
+    <p class="cover-anchor">证据分级：公司一手 &gt; 交叉验证 &gt; 券商转述 &gt; 推算（均标注）· 未上市平台数据为机构或公开报道估算口径 · 不构成投资建议</p>
+    <div class="cover-mode" id="cover-mode" aria-label="封面形态切换">
+      <button data-mode="d" class="on">D · 开箱揭幕</button>
+      <button data-mode="rec">A · 包裹递归</button>
+      <button data-mode="x">B · 分层爆炸图</button>
+      <button data-mode="w">C · 工程线框</button>
+    </div>
+    <div class="scroll-hint"><span></span>SCROLL</div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══ §0 摘要 ═══ -->
+<section id="sec-exec" class="band" data-win="exec">
+  <div class="prose">
+    <p class="sec-no">§0 · 核心发现</p>
+    <h2>存量竞争与格局重排叠加，利润表进入“主动牺牲期”</h2>
+    <p class="dek">2025年网上零售额15.97万亿元、增速个位数化，渗透率见顶确认存量基调；四强合计份额约90%，而四家上市主体净利润全部负增长——下滑高度同源，是投入而非恶化。</p>
+    <p>行业扩张阶段已经结束。2025年全国网上零售额15.97万亿元、同比增长8.6%，但实物商品网上零售额增速放缓至5.2%，占社零比重不升反降至26.1%<button class="src" data-k="K1">◆</button>。即时零售等近场业态正在分流传统电商交易，主站GMV增长的天花板被实质性压低。大促数据进一步确认结构切换：2026年618综合电商销售额仅增0.9%，即时零售渠道却增长112.3%，构成全网几乎全部净增量<button class="src" data-k="K10">◆</button>。</p>
+    <p>格局从“两超多强”改写为“四强并立”：高盛预测2025年四季度淘天份额31%、抖音24%、拼多多19%、京东16%，合计约90%（机构估算口径）<button class="src" data-k="K3">◆</button>。四强之外，得物、唯品会、闲鱼“垂类三杰”的存活逻辑不是价格差，而是信任与人群壁垒。2025—2026年全行业进入“主动利润牺牲期”：阿里Non-GAAP净利下滑62%、京东归母净利下滑约53%、拼多多上市以来首次年度利润下滑<button class="src" data-k="K17">◆</button>，投向清晰可辨——即时零售补贴、AI资本开支与商家生态扶持。</p>
+  </div>
+  <div class="wide xl"><div id="evidence-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <p>展望2026—2027年，基准情景是利润率随补贴战退坡逐步修复、但修复斜率显著分化：高盛预测2027年阿里份额降至28%、抖音升至26%，进入“分庭抗礼”区间<button class="src" data-k="K4">◆</button>。结构性机会在二手循环与Z世代入口——二手电商2025年交易规模8500亿元、同比增长31.8%，是稀缺的30%以上增量市场<button class="src" data-k="K33">◆</button>。竞争力的评估由此应从当期利润率，转向“投入换得的资产”与生态健康度。</p>
+  </div>
+  <div class="wide xl"><div id="timeline-chart" class="chart-frame"></div></div>
+</section>
+
+<!-- ═══ §0.5 概念卡 ═══ -->
+<section id="sec-terms" class="band" data-win="exec">
+  <div class="prose">
+    <p class="sec-no">§0.5 · 三个先决概念</p>
+    <h2>读这份报告前，先立住三个框架</h2>
+  </div>
+  <div class="wide">
+    <div class="term-mag">
+      <article class="term" tabindex="0">
+        <h3 class="t-abbr">四强并立</h3>
+        <p class="t-full">FOUR-POWER STRUCTURE</p>
+        <p class="t-gist">抖音跻身第一梯队，终结淘天与京东的双雄时代；2025Q4四强合计份额约90%。</p>
+        <div class="t-more"><p>2017年中金口径下淘天与京东合计市占率约93%，2025年两者合计已腰斩至约50%。高盛口径2025Q4淘天31%、抖音24%、拼多多19%、京东16%；拼多多被抖音反超跌至第三，京东为四强中唯一份额看跌者。需提示：该预测为单一券商观点，且抖音增速2026年上半年已回落至接近20%，份额路径存在下修可能。</p></div>
+        <p class="t-hint">悬停查看完整依据</p>
+      </article>
+      <article class="term" tabindex="0">
+        <h3 class="t-abbr">垂类三杰</h3>
+        <p class="t-full">TRUST, NOT PRICE</p>
+        <p class="t-gist">得物、唯品会、闲鱼的存活逻辑不是价格差，而是信任与人群壁垒。</p>
+        <div class="t-more"><p>当百亿补贴、大牌奥莱与品牌自播把“低价正品”变成行业标配，垂类平台赖以存在的价格信息差趋近于零。无法被补贴复制的能力反而凸显：得物的“先鉴别、后发货”（30岁以下用户约70%）、唯品会980万SVIP贡献线上销售52%、闲鱼在转转退出后C2C一家独大。垂类估值锚正从“多便宜”切换为“多可信”。</p></div>
+        <p class="t-hint">悬停查看完整依据</p>
+      </article>
+      <article class="term" tabindex="0">
+        <h3 class="t-abbr">利润牺牲期</h3>
+        <p class="t-full">ACTIVE PROFIT SACRIFICE</p>
+        <p class="t-gist">四家上市主体2025年净利全部负增长，但性质是主动投入而非经营恶化。</p>
+        <div class="t-more"><p>利润下滑高度同源，投向三条战线：即时零售补贴（三方合计超1500亿—2200亿元）、AI资本开支（阿里单季676.78亿元、+75%）、商家生态扶持（拼多多“千亿扶持”、抖音年降本超320亿）。当期利润表已失真，评估应转向投入换得的资产——高频入口、AI能力与商家留存。京东2026Q2经营利润45亿元扭亏，率先验证拐点。</p></div>
+        <p class="t-hint">悬停查看完整依据</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ §1 格局 ═══ -->
+<section id="sec-share" class="band" data-win="share">
+  <div class="prose">
+    <p class="sec-no">§1 · 格局重排</p>
+    <h2>份额重排未结束：唯一主变量是抖音对淘天的追赶</h2>
+    <p class="dek">未来两年拼多多与京东份额基本横盘，竞争重心从份额扩张转向利润与生态防守；视频号是唯一被预测持续上行的新变量。</p>
+    <p>按高盛“中国电商平台GMV市场份额预测”，2025Q4四强合计约90%；按“抖音每年提升约2个百分点”的路径，2027年阿里份额预计降至28%、抖音升至26%<button class="src" data-k="K4">◆</button>。两点必须提示：其一，该预测为单一券商观点而非市场共识，与大促口径（复旦、星图）不可直接互比；其二，抖音电商增速2026年上半年已回落至接近20%，26%的份额目标存在下修可能<button class="src" data-k="K6">◆</button>。</p>
+    <p>绝对规模上，四万亿成为第一梯队门槛：淘天约8.3万亿独居第一梯队；拼多多约5.2万亿居第二梯队；抖音约4.3万—4.4万亿已超越京东升至行业第三，京东约3.5万—4.5万亿（口径不一）构成直接对位<button class="src" data-k="K6">◆</button>。梯队之外，闲鱼年化约3600亿、得物估算约2000亿—2500亿、唯品会2135亿。</p>
+  </div>
+  <div class="wide xl"><div id="share-chart" class="chart-frame"></div></div>
+  <div class="wide xl"><div id="gmv-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <div class="note-box"><p><b>口径提示。</b>GMV为非强制披露指标。京东区间3.5万—4.5万亿源于是否含第三方服务等口径差异；拼多多自2022Q2起停披GMV；闲鱼年化值为“日均超10亿”推算。大促口径与全年口径存在系统性差异：复旦口径下2025年双11淘天+京东合计近六成，反映计划性消费集中的大促场景仍是传统货架电商的主场。</p></div>
+  </div>
+</section>
+
+<!-- ═══ §2 玩家面板 ═══ -->
+<section id="sec-players" class="band" data-win="players">
+  <div class="prose">
+    <p class="sec-no">§2 · 七平台玩家面板</p>
+    <h2>同一标尺下的七张面孔：规模、流量与模式</h2>
+    <p class="dek">七家平台分属1P自营、半自营特卖与3P平台三类模式——营收排名与商业规模排名严重错位，GMV与MAU才是公平的比较锚点。</p>
+    <p>模式决定口径：京东按商品销售全额确认营收（“货的钱”），淘天、拼多多只计广告与佣金净额（“服务的钱”），唯品会介于两者之间。因此京东以13091亿元营收居首、归母净利却仅为拼多多的约五分之一——这是会计口径现象，而非规模结论<button class="src" data-k="K18">◆</button>。心智分工业已稳定：“便宜去拼多多、大件3C去京东、万能长尾去淘宝、潮流鉴别去得物、闲置循环去闲鱼、品牌折扣去唯品会、刷到买去抖音”。</p>
+  </div>
+  <div class="wide xl"><div id="players-chart" class="chart-frame"></div></div>
+</section>
+
+<!-- ═══ §3 财务 ═══ -->
+<section id="sec-fin" class="band" data-win="fin">
+  <div class="prose">
+    <p class="sec-no">§3 · 财务对比</p>
+    <h2>营收普增、利润普降的剪刀差</h2>
+    <p class="dek">2025年度最显著的财务特征是营收与利润走势背离：四家上市主体营收三家增长，净利润全部负增长——利润榜与营收榜完全倒置。</p>
+    <p>营收第一的京东归母净利仅196亿元（净利率约1.5%），营收第三的拼多多净利达994亿元（净利率约23%），平台模式的变现效率约为自营模式的8倍<button class="src" data-k="K19">◆</button>。跌幅分化反映投入方向：阿里-62%系AI资本开支与即时零售叠加，京东-53%集中于外卖大战，拼多多-12%相对温和但“上市以来首降”的信号意义大于幅度本身<button class="src" data-k="K17">◆</button>。</p>
+  </div>
+  <div class="wide xl"><div id="fin-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <p>利润下滑高度同源，可归因于三场高度重合的主动投入，其共性是“利润换份额、换基础设施、换生态”。三场战争的资金来源都是既有利润池——这意味着2025—2026年的利润表下行是行业性的主动再投资周期。拐点已在部分平台出现：京东2026Q2经营利润扭亏至45亿元、Non-GAAP净利同比+20.3%，外卖业务减亏约49亿元<button class="src" data-k="K21">◆</button>。</p>
+  </div>
+  <div class="wide xl"><div id="profitwar-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <blockquote class="quote-card">
+      <p class="q-text">“需要规模时拥抱中小商家，需要利润时挤压中小商家。”</p>
+      <p class="q-who">— <b>蓝鲸财经/虎嗅《淘天中小商家的第三次危机》</b>, 2026-06-29</p>
+      <div class="q-why"><span class="q-lab">背景</span>0.6%基础软件服务费叠加付费流量依赖加深，直接抬高中小商家经营成本；2026年618综合电商仅+0.9%，淘天罕见未发布大促战报。<span class="q-lab why">为何重要</span>take rate上行与“反内卷”的平衡，是淘天变现故事能否持续的关键变量。</div>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ═══ §4 用户画像 ═══ -->
+<section id="sec-users" class="band" data-win="users">
+  <div class="prose">
+    <p class="sec-no">§4 · 用户画像</p>
+    <h2>用户总量见顶，画像分层与心智分工决定流量走向</h2>
+    <p class="dek">以QuestMobile 2025年10月为统一口径，七平台呈“一超多强与两条长尾”三梯队；竞争从“拉新”转为“存量再分配”。</p>
+    <p>规模见顶后，竞争焦点从“装机量”转向“打开频次”：抖音人均日使用约93分钟，淘天系仅约8.8分钟，即时零售被寄望于把“月度购物工具”改造成“日级打开入口”<button class="src" data-k="K44">◆</button>。画像分野上，得物30岁以下用户约70%、客单价450—500元约为行业5倍；唯品会女性占71.9%；京东是综合平台中最年轻且唯一男性过半者；拼多多一线占比仅10.5%、三线及以下超60%<button class="src" data-k="K28">◆</button>。</p>
+  </div>
+  <div class="wide xl"><div id="users-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <p>付费会员是存量时代锁定高价值用户的核心工具，但仅淘宝、京东、唯品会三家形成规模体系：88VIP约6400万走“生态卡”路线，京东PLUS超3500万走“高净值服务”路线，唯品会SVIP以12%的用户占比贡献52%的线上GMV、集中度为三家中最高<button class="src" data-k="K32">◆</button>。多平台共存成为常态：淘宝、拼多多、京东三平台重合用户已突破5000万，淘宝处于被分流中心——其10亿MAU基本盘短期无人撼动，但用户的时间与钱包份额正被持续切分。</p>
+    <div class="note-box"><p><b>口径提示。</b>得物MAU约1亿为媒体与第三方估算（非QuestMobile官方披露）；唯品会8480万为财报“全年活跃用户”，与App MAU不可直接比较；闲鱼年龄结构为注册用户口径。不同口径在矩阵中以底纹区分。</p></div>
+  </div>
+</section>
+
+<!-- ═══ §5 货币化 ═══ -->
+<section id="sec-money" class="band" data-win="money">
+  <div class="prose">
+    <p class="sec-no">§5 · 货币化能力</p>
+    <h2>take rate梯队：抖音居首、闲鱼垫底，淘天处于追赶位</h2>
+    <p class="dek">按机构估算口径，七大平台货币化率分为清晰梯队；除闲鱼为官方规则外均为测算区间，本报告按梯队排序呈现、不给单点精确值。</p>
+    <p>名义佣金率与商家真实负担严重脱节：显性费率最低的拼多多和居中的抖音，恰恰是商家流量成本最重的两个平台。拼多多主站佣金率仅约0.2%量级，但广告货币化率约4.2%且逐年走高；抖音品牌自播模式下平台收益可达GMV的10%—20%<button class="src" data-k="K27">◆</button>。商家的“税基”已从佣金切换为流量——任何“降费”叙事都应放在流量成本框架下审视。</p>
+    <p>2024年下半年起，主要平台集体从提升货币化率转向对商家让利：拼多多“百亿减免”升级“千亿扶持”（三年超1000亿元）<button class="src" data-k="K37">◆</button>，抖音2025年为商家降本超320亿元<button class="src" data-k="K38">◆</button>，得物将30余核心类目费率最高下调16%。让利规模排序恰与take rate梯队位置一致——未来两年“商家留存率”有望成为比take rate更领先的竞争力指标。</p>
+  </div>
+  <div class="wide xl"><div id="takerate-chart" class="chart-frame"></div></div>
+</section>
+
+<!-- ═══ §6 即时零售战役 ═══ -->
+<section id="sec-instant" class="band" data-win="instant">
+  <div class="prose">
+    <p class="sec-no">§6 · 即时零售战役</p>
+    <h2>1500亿—2200亿元买来的，不是即时零售利润，而是主站打开频次</h2>
+    <p class="dek">份额从“一家独大”改写为“双雄对峙”：淘宝闪购以45.2%对45.0%首次反超美团；京东以466亿元亏损换来入场券后率先减亏。</p>
+    <p>2025年2月京东上线外卖率先开火，4月底阿里推出淘宝闪购全面加码，战事在Q3“零元购”阶段达到顶峰。代价以前所未见的速度兑现为利润表损失：三方2025年合计投入超1500亿—2200亿元<button class="src" data-k="K23">◆</button>；美团全年净亏损233.5亿元，连续两年盈利后转亏。三平台承受数百亿级亏损却不退场的逻辑在于：即时零售是零售中最高频的场景——商务部研究院预计其规模2026年突破1万亿元、2030年达2万亿元<button class="src" data-k="K12">◆</button>。未参战的拼多多是隐性受损方：未烧一分钱补贴，却被指用户流量被参战对手分走。</p>
+  </div>
+  <div class="wide xl"><div id="instant-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <p>与即时零售的“利润换频次”对照，二手循环是当前唯一同时享有政策与增长红利的赛道：2025年交易规模8500亿元、同比+31.8%<button class="src" data-k="K33">◆</button>；转转退出后闲鱼一家独大，真正的交叉火力来自得物95分——竞争本质已从流量争夺转向“信任基建”争夺。出海则分化为四种范式：Temu半托管低价、TikTok Shop内容电商、京东Joybuy重资产本地自营、得物Poizon鉴别型垂类<button class="src" data-k="K34">◆</button>。</p>
+  </div>
+  <div class="wide xl"><div id="outbound-chart" class="chart-frame"></div></div>
+</section>
+
+<!-- ═══ §7 展望 ═══ -->
+<section id="sec-outlook" class="band" data-win="outlook">
+  <div class="prose">
+    <p class="sec-no">§7 · 2026–2027展望</p>
+    <h2>基准情景：份额“二八对换”与利润修复——但三个变量可改写路径</h2>
+    <p class="dek">基准情景（机构单点预测，非行业共识）下利润率随补贴战退坡逐步修复、修复斜率显著分化；AI入口、即时零售盈利模型与监管走向是三大不确定变量。</p>
+    <p>份额主线的可验证信号清晰：抖音GMV增速能否守住20%、京东外卖减亏幅度、阿里闪购投入收窄节奏<button class="src" data-k="K4">◆</button>。路径依赖型变量则难以点估计：若AI代理下单成为主流入口，搜索与货架流量的价值分配将被重构，对依赖搜索变现的淘天影响更深；若补贴复燃，各平台利润预测将整体下修<button class="src" data-k="K23">◆</button>。竞争力的计分规则正在更换：利润修复斜率取代利润绝对值、“商家留存率”取代take rate成为先行指标。</p>
+  </div>
+  <div class="wide xl"><div id="verdict-chart" class="chart-frame"></div></div>
+  <div class="prose">
+    <h3 class="sub-h">观察点与验证信号</h3>
+    <table class="dt">
+      <thead><tr><th>观察点</th><th>基准情景预期</th><th>关键验证信号</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>份额格局</td><td class="num">2027年阿里28%、抖音26%（高盛口径）</td><td>抖音GMV增速能否守住20%</td></tr>
+        <tr><td>利润修复</td><td class="num">2026H2起行业利润池企稳</td><td>京东外卖减亏幅度、阿里闪购投入收窄节奏</td></tr>
+        <tr><td>即时零售UE</td><td class="num">2026年破万亿，份额趋近“5:4:1”稳态</td><td>单均经济模型、补贴水平是否回落</td></tr>
+        <tr><td>AI电商入口</td><td class="num">AI导购从试点走向标配</td><td>千问×淘宝40亿商品池与豆包闭环的转化数据</td></tr>
+        <tr><td>二手循环</td><td class="num">维持25%以上增速（估算）</td><td>闲鱼费率上行的商家流失、二奢鉴定标准化</td></tr>
+        <tr><td>监管走向</td><td class="num">合规成本系统性上升</td><td>直播电商新规执行、约谈频次</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="margin-top:10px">份额与利润属于“可验证的基准情景”；AI入口与监管走向属于“路径依赖型变量”，其结果更多取决于平台自身执行与政策节奏。</p>
+  </div>
+</section>
+
+<!-- ═══ §8 附录 · 口径说明 ═══ -->
+<section id="sec-appendix" class="band" data-win="appendix">
+  <div class="prose">
+    <p class="sec-no">§8 · 附录 · 口径说明</p>
+    <h2>跨模式比较前，先厘清三把尺子</h2>
+    <div class="note-box">
+      <p><b>营收≠规模。</b>京东自营按商品销售全额计营收（GMV≈营收），淘天、拼多多只计服务净额——“京东营收1.3万亿 vs 阿里约1万亿”不具商业模式可比性。GMV才是比较3P平台规模的唯一公平标尺。</p>
+      <p><b>财年口径。</b>阿里巴巴财年为4月至次年3月，FY2026（2025.4–2026.3）与自然年2025大致对应但不完全重合；阿里自2026年6月季度起重组分部，与此前口径不可直接比较。</p>
+      <p><b>估算分级。</b>未上市平台（抖音电商、得物、闲鱼）GMV为媒体/机构估算；闲鱼年化值为推算；得物官方曾否认2000亿口径。所有估算在图注与钻取卡中逐条标注。</p>
+      <p><b>弃用口径。</b>“拼多多下沉73%”单一线索未获证实，本报告弃用；字节跳动IFRS净利-70%含大额非现金因素，不与上市经营利润直接对比。</p>
+    </div>
+    <table class="dt" style="margin-top:22px">
+      <thead><tr><th>模式类型</th><th>平台</th><th>核心变现方式</th><th>营收确认口径</th></tr></thead>
+      <tbody>
+        <tr><td>1P自营</td><td>京东</td><td>进销差价+物流与广告服务</td><td>商品销售全额计营收</td></tr>
+        <tr><td>半自营特卖</td><td>唯品会</td><td>商品差价（非佣金制）</td><td>商品销售净额计营收（营收/GMV约52%）</td></tr>
+        <tr class="hl"><td>3P综合平台</td><td>淘天 / 拼多多</td><td>广告+佣金 / 在线营销+交易服务</td><td>只计服务净额</td></tr>
+        <tr><td>3P内容电商</td><td>抖音电商</td><td>千川广告+类目佣金</td><td>只计服务净额（未单独披露）</td></tr>
+        <tr><td>3P+查验服务</td><td>得物</td><td>技术服务费+操作费+佣金</td><td>只计服务净额（综合抽成7%–15%）</td></tr>
+        <tr><td>C2C闲置</td><td>闲鱼</td><td>软件服务费</td><td>只计服务净额（费率0.6%–1.6%）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ 参考文献 · K锚点登记 ═══ -->
+<footer id="sec-sources">
+  <div class="prose">
+    <p class="sec-no">来源与方法</p>
+    <h2>方法、纪律与来源</h2>
+    <div class="note-box">
+      <p><b>证据分级。</b>公司一手 &gt; 交叉验证 &gt; 券商转述 &gt; 推算。无日期或单一线索来源按级标注；被撤回的口径（如得物GMV官方否认、字节利润“假摔”澄清）不进入渲染层，仅在对冲措辞中保留。</p>
+      <p><b>来源四类，逐条带日期。</b><span class="src-cat company">公司披露</span><span class="src-cat broker">券商测算</span><span class="src-cat industry">行业与官方</span><span class="src-cat kimi">汇编与推算</span></p>
+      <p><b>度量纪律。</b>双口径数字并列展示但互不互除；缺口以红色斜纹与[TBD]标出，不做插值；预测一律空心虚线，并声明“单一券商观点而非市场共识”。</p>
+    </div>
+  </div>
+  <div class="wide xl">
+    <div style="margin-top:26px">
+      <p class="chart-title">锚点登记 · K1–K44</p>
+      <p class="chart-sub">本报告赖以成立的每一个关键数字及其带日期来源 · 点击任意锚点可钻取原始登记（共222条，编号与事实源一致）</p>
+    </div>
+    <div id="source-list"></div>
+  </div>
+  <div class="prose">
+    <p class="colophon">交互式研究版 · 编译 2026-10-04 · 事实源：中国电商平台竞品分析报告（数据截至2026-09-29）· 不构成投资建议</p>
+  </div>
+</footer>
+
+</main>
+
+<aside id="dash-rail" aria-label="随读仪表盘"><canvas id="dash-canvas"></canvas></aside>
+<div id="drill-card" hidden></div>
+
+<script src="vendor/d3.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/sources.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cover.js"></script>
+<script src="js/cover-exploded.js"></script>
+<script src="js/cover-wire.js"></script>
+<script src="js/chartkit.js"></script>
+<script src="js/chart-evidence.js"></script>
+<script src="js/chart-timeline.js"></script>
+<script src="js/chart-share.js"></script>
+<script src="js/chart-players.js"></script>
+<script src="js/chart-fin.js"></script>
+<script src="js/chart-users.js"></script>
+<script src="js/chart-money.js"></script>
+<script src="js/chart-instant.js"></script>
+<script src="js/chart-verdict.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

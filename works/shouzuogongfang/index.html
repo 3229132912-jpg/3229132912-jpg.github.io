@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手作工坊 · 拼豆体验店经营演示</title>
+<style>
+  /* ============ 基础样式 ============ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: linear-gradient(160deg, #052e16 0%, #14532d 45%, #16a34a 100%);
+    min-height: 100vh;
+    color: #1f2937;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* 拼豆装饰：散落在背景上的半透明圆点 */
+  .bead {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 30%, rgba(255,255,255,.35), rgba(255,255,255,.06));
+    box-shadow: inset -2px -3px 6px rgba(0,0,0,.18);
+    pointer-events: none;
+  }
+  .bead-1 { width: 120px; height: 120px; top: -30px; right: -30px; }
+  .bead-2 { width: 56px;  height: 56px;  top: 120px; left: 6%; }
+  .bead-3 { width: 84px;  height: 84px;  top: 30%; right: 12%; }
+  .bead-4 { width: 38px;  height: 38px;  top: 42%; left: 10%; }
+  .bead-5 { width: 64px;  height: 64px;  bottom: 24%; right: 6%; }
+  .bead-6 { width: 30px;  height: 30px;  bottom: 34%; left: 20%; }
+  .bead-7 { width: 46px;  height: 46px;  bottom: 14%; left: 8%; }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 56px 24px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ============ 顶部品牌区（深绿底白字） ============ */
+  .brand { text-align: center; margin-bottom: 34px; }
+
+  .brand-logo {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    background: rgba(255, 255, 255, .14);
+    border: 1.5px solid rgba(255, 255, 255, .35);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+    backdrop-filter: blur(4px);
+  }
+
+  .brand-logo svg { width: 34px; height: 34px; }
+
+  .brand-title {
+    font-size: 32px; font-weight: 800;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+
+  .brand-subtitle {
+    font-size: 14px; color: rgba(255,255,255,.85);
+    margin-top: 8px; letter-spacing: 1px;
+  }
+
+  .demo-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 14px;
+    padding: 5px 14px;
+    font-size: 12px; color: #dcfce7;
+    background-color: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ============ 登录卡片（白色浮动） ============ */
+  .card {
+    background-color: #fff;
+    border-radius: 24px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .28);
+    padding: 32px 28px;
+  }
+
+  .card-title {
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .card-title::before {
+    content: "";
+    width: 4px; height: 18px;
+    background: #16a34a;
+    border-radius: 2px;
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-label {
+    display: block;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    outline: none;
+    background: #f9fafb;
+    transition: border-color .15s, box-shadow .15s, background-color .15s;
+  }
+
+  .form-input:focus {
+    border-color: #16a34a;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, .15);
+  }
+
+  .form-input::placeholder { color: #9ca3af; }
+
+  /* 主按钮 */
+  .btn-primary {
+    width: 100%;
+    padding: 13px;
+    font-size: 15px; font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    border: none; border-radius: 12px;
+    cursor: pointer;
+    transition: opacity .15s, transform .1s;
+    box-shadow: 0 6px 16px rgba(22, 163, 74, .35);
+  }
+
+  .btn-primary:hover { opacity: .92; }
+  .btn-primary:active { transform: scale(.98); }
+
+  /* 分隔线 */
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 22px 0 16px;
+    color: #9ca3af; font-size: 12px;
+  }
+
+  .divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #e5e7eb;
+  }
+
+  /* 快捷登录 */
+  .quick-login { display: flex; gap: 12px; }
+
+  .quick-btn {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 14px 8px;
+    background-color: #fff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color .15s, background-color .15s, transform .1s;
+  }
+
+  .quick-btn:hover { border-color: #16a34a; background-color: #f0fdf4; }
+  .quick-btn:active { transform: scale(.97); }
+  .quick-btn svg { width: 26px; height: 26px; color: #16a34a; }
+  .quick-btn .role-name { font-size: 14px; font-weight: 600; }
+  .quick-btn .role-desc { font-size: 11px; color: #6b7280; }
+
+  /* 底部说明 */
+  .footer-note {
+    text-align: center;
+    font-size: 12px; color: rgba(255,255,255,.75);
+    margin-top: 22px;
+    text-shadow: 0 1px 4px rgba(0,0,0,.2);
+  }
+
+  /* ============ iOS 风格动效 ============ */
+  @keyframes iosEnter {
+    from { opacity: 0; transform: translateY(28px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0)   scale(1); }
+  }
+  @keyframes iosFloat {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-12px); }
+  }
+  @keyframes iosShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes iosPulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(22,163,74,.35); }
+    50%     { box-shadow: 0 0 0 10px rgba(22,163,74,0); }
+  }
+
+  .page   { animation: iosEnter .7s cubic-bezier(.22,1,.36,1) both; }
+  .brand  { animation: iosEnter .6s .08s cubic-bezier(.22,1,.36,1) both; }
+  .card   { animation: iosEnter .7s .18s cubic-bezier(.22,1,.36,1) both; }
+  .hero-img {
+    width:100%; border-radius:20px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.22);
+    animation: iosEnter .8s .12s cubic-bezier(.22,1,.36,1) both;
+    margin-bottom: 22px;
+  }
+
+  .bead { animation: iosFloat 5s ease-in-out infinite; }
+  .bead-1 { animation-delay: 0s; }
+  .bead-2 { animation-delay: .8s; }
+  .bead-3 { animation-delay: 1.6s; }
+  .bead-4 { animation-delay: 2.4s; }
+  .bead-5 { animation-delay: 3.2s; }
+  .bead-6 { animation-delay: 4.0s; }
+  .bead-7 { animation-delay: .4s; }
+
+  .btn-primary {
+    transition: transform .18s cubic-bezier(.34,1.56,.64,1), opacity .15s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0, rgba(255,255,255,.25), transparent 60%);
+    opacity: 0; transition: opacity .2s;
+  }
+  .btn-primary:hover::after { opacity: 1; }
+  .btn-primary:active { transform: scale(.96); }
+
+  .quick-btn {
+    transition: transform .18s cubic-bezier(.34,1.56,.64,1), border-color .15s, background-color .15s, box-shadow .2s;
+  }
+  .quick-btn:hover { box-shadow: 0 4px 16px rgba(22,163,74,.15); }
+  .quick-btn:active { transform: scale(.96); }
+
+  .form-input {
+    transition: border-color .2s, box-shadow .2s, background-color .2s, transform .15s;
+  }
+  .form-input:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(22,163,74,.12), 0 0 0 4px rgba(22,163,74,.18);
+  }
+</style>
+</head>
+<body>
+  <!-- 拼豆装饰点 -->
+  <span class="bead bead-1"></span>
+  <span class="bead bead-2"></span>
+  <span class="bead bead-3"></span>
+  <span class="bead bead-4"></span>
+  <span class="bead bead-5"></span>
+  <span class="bead bead-6"></span>
+  <span class="bead bead-7"></span>
+
+  <div class="page">
+
+    <!-- 顶部品牌区 -->
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">
+        <!-- 拼豆网格图标 -->
+        <svg viewBox="0 0 24 24" fill="#fff">
+          <circle cx="5"  cy="5"  r="1.8"/><circle cx="12" cy="5"  r="1.8"/><circle cx="19" cy="5"  r="1.8"/>
+          <circle cx="5"  cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/>
+          <circle cx="5"  cy="19" r="1.8"/><circle cx="12" cy="19" r="1.8"/><circle cx="19" cy="19" r="1.8"/>
+        </svg>
+      </div>
+      <h1 class="brand-title">手作工坊</h1>
+      <p class="brand-subtitle">拼豆体验店经营系统</p>
+      <div class="demo-badge">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        演示模式 · 数据为 Seed 模拟，不会写入真实数据库
+      </div>
+    </div>
+
+    <!-- 手作工坊插画 -->
+    <img src="hero-craft.jpg" alt="手作工坊拼豆体验" class="hero-img" loading="eager">
+
+    <!-- 登录卡片 -->
+    <div class="card">
+      <div class="card-title">欢迎回来</div>
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="username">用户名</label>
+          <input class="form-input" id="username" type="text" placeholder="owner 或 cashier" autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">密码</label>
+          <input class="form-input" id="password" type="password" placeholder="请输入密码" autocomplete="current-password">
+        </div>
+
+        <button class="btn-primary" type="submit">登 录</button>
+      </form>
+
+      <div class="divider">快捷登录</div>
+
+      <div class="quick-login">
+        <button class="quick-btn" type="button" data-role="owner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span class="role-name">店主</span>
+          <span class="role-desc">owner · 可见仪表盘</span>
+        </button>
+
+        <button class="quick-btn" type="button" data-role="cashier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="role-name">收银员</span>
+          <span class="role-desc">cashier · 隐藏仪表盘</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 底部说明 -->
+    <p class="footer-note">手作工坊·演示店 · 演示账号：owner / owner123，cashier / cashier123</p>
+  </div>
+
+  <script>
+    // 演示逻辑：本地复制版不连接后端，仅做提示
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var username = document.getElementById('username').value.trim() || 'owner';
+      // 本地演示:直接跳转到营业页
+      window.location.href = 'business.html';
+    });
+
+    document.querySelectorAll('.quick-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var role = btn.dataset.role;
+        document.getElementById('username').value = role;
+        document.getElementById('password').value = role + '123';
+        // 快捷登录:直接进入营业页
+        window.location.href = 'business.html';
+      });
+    });
+  </script>
+  <script>
+    /* iOS 风格交互增强 */
+    document.querySelectorAll('.btn-primary, .quick-btn').forEach(function(el){
+      el.addEventListener('click', function(e){
+        var rect = el.getBoundingClientRect();
+        var ripple = document.createElement('span');
+        ripple.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:iosRipple .5s ease-out;pointer-events:none;';
+        var size = Math.max(rect.width, rect.height) * 1.2;
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+        ripple.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+        el.style.position = 'relative'; el.style.overflow = 'hidden';
+        el.appendChild(ripple);
+        setTimeout(function(){ ripple.remove(); }, 500);
+      });
+    });
+    // 输入框聚焦时轻微上浮
+    document.querySelectorAll('.form-input').forEach(function(inp){
+      inp.addEventListener('focus', function(){ this.style.transform = 'translateY(-2px)'; });
+      inp.addEventListener('blur',  function(){ this.style.transform = 'translateY(0)'; });
+    });
+    // 页面加载后品牌 logo 轻微弹跳
+    window.addEventListener('load', function(){
+      var logo = document.querySelector('.brand-logo');
+      if(logo) {
+        logo.style.animation = 'none';
+        logo.offsetHeight; // reflow
+        logo.style.animation = 'iosBounce .6s cubic-bezier(.34,1.56,.64,1)';
+      }
+    });
+  </script>
+  <style>
+    @keyframes iosRipple {
+      to { transform: scale(2.5); opacity: 0; }
+    }
+    @keyframes iosBounce {
+      0%   { transform: scale(0.8); opacity: 0; }
+      60%  { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+  </style>
+<footer style="text-align:center;padding:20px 16px 8px;color:rgba(255,255,255,.6);font-size:12px;line-height:1.8;">
+  手作工坊 · 拼豆体验店经营系统 · 交互演示项目 · 页面数据均为模拟
+</footer>
+</body>
+</html>

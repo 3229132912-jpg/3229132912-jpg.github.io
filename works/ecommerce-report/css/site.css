@@ -1,0 +1,42 @@
+/* site.css · 站点补充样式（不变量层在 style.css，本文件仅追加） */
+
+/* 图表通用 */
+.chart-frame { margin-bottom: 10px; }
+.chart-frame svg { display: block; width: 100%; height: auto; }
+.chart-frame svg text { font-family: var(--mono); }
+.d-hit { cursor: pointer; }
+.d-hit:hover { opacity: .82; }
+
+/* 窄屏横向滚动保护：固定viewBox图不压缩 */
+@media (max-width: 700px) {
+  .fig-xscroll { overflow-x: auto; }
+  .fig-xscroll > svg { width: 720px !important; max-width: none !important; }
+}
+
+/* P5 矩阵热表 */
+.heat td, .heat th { text-align: left; }
+.heat td.cell-same { background: rgba(34,81,255,.13); }
+.heat td.cell-part { background-image: repeating-linear-gradient(45deg, rgba(34,81,255,.16) 0 2px, transparent 2px 7px); }
+.heat td.cell-none { background: rgba(5,28,44,.045); }
+.heat tr.row-now td { background: var(--paper); border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+.heat .legend { font-family: var(--mono); font-size: 10px; color: var(--ink-lo); letter-spacing: .05em; margin-top: 8px; }
+.dot5 { font-family: var(--mono); letter-spacing: 2px; color: var(--red); }
+
+/* 附录编号连续性 */
+.appendix-list { counter-reset: app; }
+
+/* 封面按钮在浅色画布上的可读性（左栏白色渐变洗由画布绘制） */
+.cover-mode button { backdrop-filter: none; }
+
+/* 右栏仪表盘内的提示 */
+#dash-rail .dash-tip {
+  position: absolute; right: 12px; bottom: 10px;
+  font-family: var(--mono); font-size: 9px; color: var(--ink-lo);
+  letter-spacing: .14em; text-transform: uppercase; pointer-events: none;
+}
+
+/* reduced-motion：所有 CSS 动画直接到终态 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

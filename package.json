@@ -1,9 +1,9 @@
 {
-  "name": "portfolio-site",
+  "name": "songxinrui-resume",
   "version": "1.0.0",
   "private": true,
-  "description": "个人作品集网站（复刻 Notion 版式）",
+  "description": "宋鑫蕊 · UI设计师个人简历网站",
   "scripts": {
-    "dev": "node serve.js"
+    "dev": "node server.js"
   }
 }
