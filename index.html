@@ -48,11 +48,11 @@
 
   :focus-visible { outline: 2px solid #6C8DF5; outline-offset: 2px; border-radius: 4px; }
 
-  /* ── 渐变光晕 ── */
+  /* ── 渐变光晕（蓝 + 中性灰，呼应黑白照片） ── */
   .orb { position: absolute; border-radius: 9999px; filter: blur(90px); pointer-events: none; }
-  .orb-blue   { background: rgba(108,141,245,.35); }
-  .orb-purple { background: rgba(176,156,250,.32); }
-  .orb-pink   { background: rgba(239,195,214,.30); }
+  .orb-blue   { background: rgba(108,141,245,.30); }
+  .orb-slate  { background: rgba(100,116,139,.26); }
+  .orb-ash    { background: rgba(203,213,225,.38); }
 
   /* ── 玻璃拟态 ── */
   .glass {
@@ -81,7 +81,7 @@
   .nav-link { position: relative; transition: color .25s ease; }
   .nav-link::after {
     content: ""; position: absolute; left: 50%; bottom: -5px; width: 0; height: 2px; border-radius: 2px;
-    background: linear-gradient(90deg, #6C8DF5, #B09CFA); transform: translateX(-50%); transition: width .3s ease;
+    background: linear-gradient(90deg, #6C8DF5, #3B4A6B); transform: translateX(-50%); transition: width .3s ease;
   }
   .nav-link:hover, .nav-link.active { color: #6C8DF5; }
   .nav-link:hover::after, .nav-link.active::after { width: 100%; }
@@ -92,9 +92,9 @@
     padding: 0 2px; border-radius: 2px;
   }
 
-  /* ── 渐变文字 ── */
+  /* ── 渐变文字（蓝→墨，去粉紫） ── */
   .grad-text {
-    background: linear-gradient(115deg, #4A6DE5 10%, #8B7CF0 55%, #D99BC0 95%);
+    background: linear-gradient(115deg, #4A6DE5 15%, #3B4A6B 90%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
 
@@ -102,7 +102,7 @@
   .hero-photo-frame { position: relative; }
   .hero-photo-frame::before {
     content: ""; position: absolute; inset: -14px; border-radius: 32px; z-index: -1;
-    background: linear-gradient(135deg, rgba(108,141,245,.5), rgba(176,156,250,.45), rgba(239,195,214,.5));
+    background: linear-gradient(135deg, rgba(108,141,245,.42), rgba(71,85,105,.4), rgba(35,42,61,.38));
     filter: blur(26px); opacity: .75;
   }
   .hero-photo { transition: transform .8s cubic-bezier(.22,1,.36,1); }
@@ -112,14 +112,14 @@
   .num-badge {
     font-family: "Noto Serif SC", "Songti SC", serif;
     letter-spacing: .08em;
-    background: linear-gradient(120deg, #4A6DE5, #8B7CF0);
+    background: linear-gradient(120deg, #4A6DE5, #3B4A6B);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .sec-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(108,141,245,.4), transparent); }
 
   /* ── 统计条 ── */
   .stat-num {
-    background: linear-gradient(120deg, #4A6DE5, #8B7CF0);
+    background: linear-gradient(120deg, #4A6DE5, #232A3D);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
 
@@ -145,8 +145,19 @@
   .divider-dot { width: 4px; height: 4px; border-radius: 9999px; background: #C9BFB0; }
 
   /* ── 按钮 ── */
-  .btn-glow { box-shadow: 0 10px 30px rgba(108,141,245,.4); transition: transform .25s ease, box-shadow .25s ease; }
-  .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(108,141,245,.5); }
+  .btn-glow { box-shadow: 0 10px 30px rgba(35,42,61,.28); transition: transform .25s ease, box-shadow .25s ease; }
+  .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(35,42,61,.34); }
+  .copy-btn { cursor: pointer; }
+  .copy-btn.copied { color: #059669 !important; border-color: rgba(5,150,105,.4) !important; }
+
+  /* ── 悬浮导航 ── */
+  #site-header { transition: padding .35s cubic-bezier(.22,1,.36,1); }
+  #nav-bar { transition: all .35s cubic-bezier(.22,1,.36,1); border-radius: 0; }
+  #site-header.floating { padding-top: 12px; }
+  #site-header.floating #nav-bar {
+    border-radius: 999px; border: 1px solid rgba(255,255,255,.7);
+    box-shadow: 0 18px 50px rgba(35,42,61,.14), inset 0 1px 0 rgba(255,255,255,.8);
+  }
 
   .pulse-dot { position: relative; }
   .pulse-dot::after {
@@ -166,13 +177,14 @@
 <!-- 背景光晕 -->
 <div class="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
   <div class="orb orb-blue   w-[520px] h-[520px] -top-40 -left-40"></div>
-  <div class="orb orb-purple w-[460px] h-[460px] top-[38%] -right-52"></div>
-  <div class="orb orb-pink   w-[420px] h-[420px] -bottom-40 left-[22%]"></div>
+  <div class="orb orb-slate w-[460px] h-[460px] top-[38%] -right-52"></div>
+  <div class="orb orb-ash   w-[420px] h-[420px] -bottom-40 left-[22%]"></div>
 </div>
 
-<!-- 顶部导航（玻璃拟态） -->
-<header class="sticky top-0 z-40 glass-strong !rounded-none border-0 border-b border-white/50">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- 顶部导航（下滑后悬浮为玻璃胶囊） -->
+<header id="site-header" class="sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div id="nav-bar" class="glass-strong border-0 border-b border-white/50 px-6 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-2.5">
       <span class="w-8 h-8 rounded-full bg-ink text-paper flex items-center justify-center font-serif text-sm shadow-md">蕊</span>
       <span class="font-serif text-lg font-bold tracking-wide">宋鑫蕊</span>
@@ -187,6 +199,7 @@
     <a href="#contact" class="btn-glow h-9 px-5 rounded-full bg-ink text-paper text-sm flex items-center gap-2 hover:bg-accent transition-colors">
       <i class="fas fa-paper-plane text-xs"></i><span>求职沟通</span>
     </a>
+    </div>
   </div>
 </header>
 
@@ -212,20 +225,21 @@
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a href="#works" class="btn-glow h-11 px-6 rounded-full bg-accent text-white flex items-center gap-2 text-sm font-medium hover:opacity-95">
+          <a href="#works" class="btn-glow h-11 px-6 rounded-full bg-ink text-white flex items-center gap-2 text-sm font-medium hover:bg-accent transition-colors">
             <i class="fas fa-layer-group text-xs"></i><span>查看作品</span>
           </a>
-          <a href="tel:13186087587" class="h-11 px-6 rounded-full glass-strong flex items-center gap-2 text-sm font-medium hover:text-accent transition-colors">
+          <button type="button" data-copy="131 8608 7587" class="copy-btn h-11 px-6 rounded-full glass-strong flex items-center gap-2 text-sm font-medium hover:text-accent transition-colors">
             <i class="fas fa-phone text-xs"></i><span>131 8608 7587</span>
-          </a>
-          <a href="mailto:s-xxx-rrr@qq.com" class="h-11 px-6 rounded-full glass-strong flex items-center gap-2 text-sm hover:text-accent transition-colors">
+          </button>
+          <button type="button" data-copy="s-xxx-rrr@qq.com" class="copy-btn h-11 px-6 rounded-full glass-strong flex items-center gap-2 text-sm hover:text-accent transition-colors">
             <i class="fas fa-envelope text-xs"></i><span>s-xxx-rrr@qq.com</span>
-          </a>
+          </button>
         </div>
 
-        <div class="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted">
+        <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted">
           <span class="flex items-center gap-1.5"><i class="fas fa-location-dot text-accent"></i>意向 西安 / 北京 / 杭州 · 可远程</span>
           <span class="flex items-center gap-1.5"><i class="fas fa-award text-accent"></i>香港青年设计师奖 · 三等奖</span>
+          <a href="https://github.com/3229132912-jpg" target="_blank" rel="noopener" class="flex items-center gap-1.5 hover:text-accent transition-colors"><i class="fab fa-github text-sm text-ink/70"></i><span class="font-medium text-ink/70">GitHub</span></a>
         </div>
       </div>
 
@@ -409,15 +423,15 @@
         <div class="text-xs text-muted tracking-widest mb-4">获奖与证书</div>
         <div class="flex flex-col gap-4">
           <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accentsoft to-lav/40 text-accent flex items-center justify-center shrink-0"><i class="fas fa-award text-sm"></i></span>
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accentsoft to-slate-200 text-accent flex items-center justify-center shrink-0"><i class="fas fa-award text-sm"></i></span>
             <div class="text-sm font-bold leading-tight">香港青年设计师奖 · 三等奖</div>
           </div>
           <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accentsoft to-lav/40 text-accent flex items-center justify-center shrink-0"><i class="fas fa-certificate text-sm"></i></span>
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accentsoft to-slate-200 text-accent flex items-center justify-center shrink-0"><i class="fas fa-certificate text-sm"></i></span>
             <div class="text-sm font-bold leading-tight">教育部「双千计划」人工智能辅助设计开发 · 年级前 3%</div>
           </div>
           <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accentsoft to-lav/40 text-accent flex items-center justify-center shrink-0"><i class="fas fa-laptop-code text-sm"></i></span>
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accentsoft to-slate-200 text-accent flex items-center justify-center shrink-0"><i class="fas fa-laptop-code text-sm"></i></span>
             <div class="text-sm font-bold leading-tight">全国计算机等级考试二级</div>
           </div>
         </div>
@@ -427,17 +441,20 @@
 
   <!-- ══════════ 联系我 ══════════ -->
   <section id="contact" class="reveal relative py-20">
-    <div class="orb orb-purple w-[380px] h-[380px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 !opacity-60" aria-hidden="true"></div>
+    <div class="orb orb-slate w-[380px] h-[380px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 !opacity-60" aria-hidden="true"></div>
     <div class="relative flex flex-col items-center text-center gap-6">
       <div class="w-12 h-1 rounded-full bg-gradient-to-r from-accent to-lav"></div>
       <h2 class="font-serif text-3xl md:text-4xl font-black leading-snug">期待与你的团队一起，<br>让产品<span class="grad-text">更好看、更好用</span>。</h2>
       <p class="text-muted text-sm">UI / UX 设计方向 · 西安 / 北京 / 杭州 · 也可远程协作</p>
       <div class="flex flex-wrap justify-center gap-3 mt-2">
-        <a href="tel:13186087587" class="btn-glow h-12 px-7 rounded-full bg-accent text-white flex items-center gap-2 text-sm font-medium">
+        <button type="button" data-copy="131 8608 7587" class="copy-btn btn-glow h-12 px-7 rounded-full bg-ink text-white flex items-center gap-2 text-sm font-medium">
           <i class="fas fa-phone text-xs"></i><span>131 8608 7587</span>
-        </a>
-        <a href="mailto:s-xxx-rrr@qq.com" class="h-12 px-7 rounded-full glass-strong flex items-center gap-2 text-sm hover:text-accent transition-colors">
+        </button>
+        <button type="button" data-copy="s-xxx-rrr@qq.com" class="copy-btn h-12 px-7 rounded-full glass-strong flex items-center gap-2 text-sm hover:text-accent transition-colors">
           <i class="fas fa-envelope text-xs"></i><span>s-xxx-rrr@qq.com</span>
+        </button>
+        <a href="https://github.com/3229132912-jpg" target="_blank" rel="noopener" class="h-12 px-7 rounded-full glass-strong flex items-center gap-2 text-sm hover:text-accent transition-colors">
+          <i class="fab fa-github"></i><span>GitHub</span>
         </a>
       </div>
     </div>
@@ -448,7 +465,10 @@
 <footer class="border-t border-white/60 py-8">
   <div class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-3 text-xs text-muted">
     <span>© 2026 宋鑫蕊 · UI DESIGNER</span>
-    <span>Designed & Built with Figma-friendly workflow</span>
+    <span class="flex items-center gap-4">
+      <a href="https://github.com/3229132912-jpg" target="_blank" rel="noopener" class="hover:text-accent transition-colors flex items-center gap-1.5"><i class="fab fa-github"></i>GitHub</a>
+      <span>Designed & Built with Figma-friendly workflow</span>
+    </span>
   </div>
 </footer>
 
@@ -478,6 +498,40 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   })();
+
+  // 下滑后导航悬浮为玻璃胶囊
+  (function () {
+    var header = document.getElementById('site-header');
+    function onScroll() { header.classList.toggle('floating', window.scrollY > 24); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // 电话 / 邮箱：点击复制，不跳转
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var span = btn.querySelector('span');
+      var icon = btn.querySelector('i');
+      var oldText = span.textContent, oldIcon = icon.className;
+      function done() {
+        span.textContent = '已复制到剪贴板';
+        icon.className = 'fas fa-check text-xs';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          span.textContent = oldText; icon.className = oldIcon; btn.classList.remove('copied');
+        }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta); done();
+      }
+    });
+  });
 </script>
 </body>
 </html>
